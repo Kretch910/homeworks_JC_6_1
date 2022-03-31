@@ -26,7 +26,7 @@ public class CreditAccountTest {
     }
 
     @Test
-    public void PayingTest() {
+    public void payingTest() {
         int amount = 100;
 
         boolean answer = creditAccount.pay(amount);
@@ -35,8 +35,8 @@ public class CreditAccountTest {
     }
 
     @ParameterizedTest
-    @MethodSource("ReplenishingTestSource")
-    public void ReplenishingTest(int amount, boolean expected) {
+    @MethodSource("replenishingTestSource")
+    public void replenishingTest(int amount, boolean expected) {
         creditAccount.pay(150);
 
         boolean answer = creditAccount.addMoney(amount);
@@ -44,7 +44,7 @@ public class CreditAccountTest {
         Assertions.assertEquals(answer, expected);
     }
 
-    private static Stream<Arguments> ReplenishingTestSource() {
+    private static Stream<Arguments> replenishingTestSource() {
         return Stream.of(
                 Arguments.of(100, true),
                 Arguments.of(200, false)
@@ -52,7 +52,7 @@ public class CreditAccountTest {
     }
 
     @Test
-    public void TransmittingTest() {
+    public void transmittingTest() {
         int amount = 100;
 
         boolean answer = creditAccount.transfer(savingsAccount, amount);

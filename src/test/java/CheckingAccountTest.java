@@ -28,8 +28,8 @@ class CheckingAccountTest {
 
 
     @ParameterizedTest
-    @MethodSource("PayingTestSource")
-    public void PayingTest(int balance, int amount, boolean expected) {
+    @MethodSource("payingTestSource")
+    public void payingTest(int balance, int amount, boolean expected) {
         checkingAccount.addMoney(balance);
 
         boolean answer = checkingAccount.pay(amount);
@@ -37,7 +37,7 @@ class CheckingAccountTest {
         Assertions.assertEquals(answer, expected);
     }
 
-    private static Stream<Arguments> PayingTestSource() {
+    private static Stream<Arguments> payingTestSource() {
         return Stream.of(
                 Arguments.of(200, 100, true),
                 Arguments.of(200, 210, false)
@@ -45,7 +45,7 @@ class CheckingAccountTest {
     }
 
     @Test
-    public void ReplenishingTest() {
+    public void replenishingTest() {
         int amount = 100;
 
         boolean answer = checkingAccount.addMoney(amount);
@@ -54,8 +54,8 @@ class CheckingAccountTest {
     }
 
     @ParameterizedTest
-    @MethodSource("TransmittingTestSource")
-    public void TransmittingTest(int balance, int amount, boolean expected) {
+    @MethodSource("transmittingTestSource")
+    public void transmittingTest(int balance, int amount, boolean expected) {
         checkingAccount.addMoney(balance);
 
         boolean answer = checkingAccount.transfer(savingsAccount, amount);
@@ -63,7 +63,7 @@ class CheckingAccountTest {
         Assertions.assertEquals(answer, expected);
     }
 
-    private static Stream<Arguments> TransmittingTestSource() {
+    private static Stream<Arguments> transmittingTestSource() {
         return Stream.of(
                 Arguments.of(200, 100, true),
                 Arguments.of(200, 210, false)
